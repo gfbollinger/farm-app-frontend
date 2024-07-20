@@ -2,10 +2,8 @@
 import { useEffect, useState } from "react"
 import { HiHome } from "react-icons/hi"
 import SideNav from './../components/SideNav'
-import MainContainer from './../components/MainContainer'
-import { Breadcrumb } from "flowbite-react"
 import { Modal } from "flowbite-react"
-import { Button, Label, TextInput, Select, Radio } from "flowbite-react"
+import { Breadcrumb, Button, Label, Radio, Select, Textarea, TextInput } from "flowbite-react"
 
 interface PlantTypes {
   _id : string
@@ -284,7 +282,7 @@ const PlantsPage = () => {
 
               <div className="">
                   <div className="mb-2 block">
-                    <Label htmlFor="plantType" value="Seleccionar tipo" />
+                    <Label htmlFor="plantType" value="Seleccionar categoría padre" />
                   </div>
                   <Select onChange={ (e) => setNewSubCategoryData( {...newSubCategoryData, parentId: e.target.value })} id="subcategoy-parent" required>
                     <option value=''>-- Seleccionar</option>
@@ -300,7 +298,7 @@ const PlantsPage = () => {
 
                 <div className="mb-4">
                   <div className="mb-2 block">
-                    <Label htmlFor="name" value="Nombre de la Categoría" />
+                    <Label htmlFor="name" value="Nombre de la Subcategoría" />
                   </div>
                   <TextInput onChange={ (e) => setNewSubCategoryData( {...newSubCategoryData, name: e.target.value })} id="name" type="text" required shadow />
                 </div>
@@ -309,7 +307,7 @@ const PlantsPage = () => {
                   <div className="mb-2 block">
                     <Label htmlFor="description" value="Descripción de la categoría" />
                   </div>
-                  <TextInput onChange={ (e) => setNewSubCategoryData( {...newSubCategoryData, description: e.target.value })} id="description" type="text" shadow />
+                  <Textarea onChange={ (e) => setNewSubCategoryData( {...newSubCategoryData, description: e.target.value })} id="description" shadow />
                 </div>
                 <Button type="submit">Agregar SubCategoría</Button>
               </form>
