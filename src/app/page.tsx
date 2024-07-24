@@ -4,35 +4,47 @@ import MainContainer from './components/MainContainer'
 import { useEffect, useState } from "react"
 
 export default function Home() {
-  const [plants, setPlants] = useState([])
+  const [plantTypes, setPlantTypes] = useState([])
   const [categories, setCategories] = useState([])
+  const [plants, setPlants] = useState([])
 
   useEffect (() => {
+    fetchCategories()
     fetchPlants()
+    fetchPlantTypes()
+  }, [])
 
+  const fetchPlantTypes = () => {
+    fetch('http://localhost:5555/api/plant-types')
+      .then(result => result.json())
+      .then(data => {
+        setPlantTypes(data)
+      })
+  }
+
+  const fetchCategories = () => {
     fetch('http://localhost:5555/api/categories')
       .then(result => result.json())
       .then(data => {
         setCategories(data)
       })
-  }, [])
+  }
 
   const fetchPlants = () => {
-    console.log('fetchPlants')
     fetch('http://localhost:5555/api/plants')
       .then(result => result.json())
       .then(data => {
         setPlants(data)
       })
-  }
+  }  
 
-  console.log(plants, categories)
   return (
     <>
       <SideNav />
       <MainContainer
-        plants={plants}
+        plantTypes={plantTypes}
         categories={categories}
+        plants={plants}
         fetchPlants={fetchPlants}
       />
     </>

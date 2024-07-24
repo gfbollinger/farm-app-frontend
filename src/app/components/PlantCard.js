@@ -1,15 +1,35 @@
 import React from 'react'
+import { Badge } from 'flowbite-react'
 
 const PlantCard = ({plantData, handleDeletePlant}) => {
+    console.log(plantData)
     return (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
                 <img className="p-2 rounded-t-lg" src={plantData.imageUrl ? plantData.imageUrl : 'https://placehold.co/400x300'} alt="product image" />
             </a>
             <div className="px-5 pb-5">
-                <a href="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{plantData.name}</h5>
+                <a href="#" className='block mb-3'>
+                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{plantData && plantData.name}</h5>
                 </a>
+                
+                <div className="flex flex-wrap gap-2 mb-1">
+                    <span className='text-xs'>Tipo:</span> 
+                    <Badge>{plantData.plantType && plantData.plantType.name}</Badge>
+                </div>
+                
+                <div className='flex gap-4'>
+                    <div className="flex flex-wrap gap-2">
+                        <span className='text-xs'>Categoría: </span>
+                        <Badge>{plantData && plantData.category.name}</Badge>
+                    </div>
+                    {/* TODO:
+                        <div className="flex flex-wrap gap-2">
+                        <span className='text-xs'>Subcategoría: </span>
+                        <Badge>{plantData && plantData.category.name}</Badge>
+                    </div> */}
+                </div>
+
                 <div className="flex items-center mt-2.5 mb-5">
                     <div className="flex items-center space-x-1 rtl:space-x-reverse">
                         <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">

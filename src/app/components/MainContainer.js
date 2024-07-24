@@ -5,13 +5,15 @@ import PlantCard from './PlantCard'
 import FormAddPlant from './FormAddPlant'
 import { Modal } from "flowbite-react";
 
-const MainContainer = ({plants, categories, fetchPlants}) => {
+const MainContainer = ({plants, categories, fetchPlants, plantTypes}) => {
   const [openModal, setOpenModal] = useState(false)
   const [newPlantData, setNewPlantData] = useState({
     name: '',
     category: '',
-    type: '',
-    imageUrl: ''
+    subcategory: '',
+    plantType: '',
+    imageUrl: '',
+    description: '',
   })
 
   const [file, setFile] = useState(null);
@@ -161,6 +163,7 @@ const MainContainer = ({plants, categories, fetchPlants}) => {
                   res={res}
                   handleSelectFile={handleSelectFile}
                   handleUpload={handleUpload}
+                  plantTypes={plantTypes}
                 />
 
               </div>
